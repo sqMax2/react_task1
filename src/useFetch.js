@@ -5,13 +5,13 @@ export function useFetch(url) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  function refetch({ params = {} } = {}) {
+  function refetch(options = {}) {
 	console.log(params)
 	params._limit = params._limit ? params._limit - 1 : 0
 	setError(false);
 	setIsLoading(true);
 	setData(null);
-	fetch(url)
+	fetch(url, options)
 	  .then((response) => {
 		return response.json();
 	  })
@@ -22,11 +22,6 @@ export function useFetch(url) {
 	  .catch((error) => {
 		setIsLoading(false);
 		setError(true);
-		if (params._limit) refetch({
-		  params: {
-			_limit: params._limit
-		  }
-		});
 	  });
   }
 
