@@ -6,8 +6,6 @@ export function useFetch(url) {
   const [error, setError] = useState(false);
 
   function refetch(options = {}) {
-	console.log(params)
-	params._limit = params._limit ? params._limit - 1 : 0
 	setError(false);
 	setIsLoading(true);
 	setData(null);
